@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '@/styles/theme';
+import { lightTheme, darkTheme } from '@/styles/themes';
 import { useTheme } from '@/context/ThemeContext';
 
 export const ThemeClientProvider = ({ children }: { children: React.ReactNode }) => {
