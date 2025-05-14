@@ -1,63 +1,77 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const Section = styled.section`
-  min-height: calc(100vh - 4rem); /* asumiendo navbar de 4rem */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
+  padding: 4rem 2rem;
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
+`;
+
+const Heading = styled.h2`
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+`;
+
+const Paragraph = styled.p`
+  max-width: 60ch;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+`;
+
+const TechList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+
+  li {
+    background: ${({ theme }) => theme.text}10;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+  }
 `;
 
 export default function About() {
   return (
     <Section id="about">
-      <motion.h1
-        className="text-4xl md:text-6xl font-bold mb-4"
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        ¡Hola! 👋 Soy Pedro Leone
-      </motion.h1>
+        <Heading>Sobre mí</Heading>
 
-      <motion.p
-        className="text-lg md:text-xl max-w-2xl mb-6 leading-relaxed"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-      >
-        Biólogo de formación con background en ciencias, ahora desarrollador web
-        especializado en Backend y arquitectura de datos.  
-        Creo soluciones limpias y eficientes basadas en lógica sólida y
-        bases de datos organizadas.
-      </motion.p>
+        <Paragraph>
+          Soy Biólogo de formación con un enfoque analítico y estructurado.
+          En los últimos años hice una transición al desarrollo web, especializándome en
+          Backend, arquitectura de datos y soluciones fullstack que combinan lógica, claridad
+          y eficiencia.
+        </Paragraph>
 
-      <motion.div
-        className="flex flex-wrap gap-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
-      >
-        <Link
-          href="/cv.pdf"
-          download
-          className="px-5 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
-        >
-          Descargar CV
-        </Link>
-        <a
-          href="#contact"
-          className="px-5 py-3 border-2 border-green-600 text-green-600 rounded-lg hover:bg-green-600 hover:text-white transition"
-        >
-          Contáctame
-        </a>
+        <Paragraph>
+          Me apasiona construir software limpio y mantenible, y disfruto diseñar
+          flujos de datos que escalen con facilidad. Tengo experiencia liderando módulos
+          de inventario, métricas y manejo de usuarios en aplicaciones empresariales.
+        </Paragraph>
+
+        <Heading>Tecnologías</Heading>
+        <TechList>
+          <li>TypeScript</li>
+          <li>Node.js</li>
+          <li>NestJS</li>
+          <li>PostgreSQL</li>
+          <li>Prisma</li>
+          <li>React</li>
+          <li>Next.js</li>
+          <li>Styled Components</li>
+        </TechList>
       </motion.div>
     </Section>
   );
