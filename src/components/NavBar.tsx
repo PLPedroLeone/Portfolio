@@ -85,7 +85,7 @@ export default function NavBar() {
           <NavLink href="#about">Sobre mí</NavLink>
           <NavLink href="#projects">Proyectos</NavLink>
           <NavLink href="#contact">Contacto</NavLink>
-          <DownloadCV href="/cv.pdf" download>
+          <DownloadCV href="/cv-pedro-leone.pdf" download="cv-pedro-leone.pdf">
             Descargar CV
           </DownloadCV>
           <ThemeToggle onClick={toggleTheme}>
