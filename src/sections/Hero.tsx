@@ -1,131 +1,175 @@
 'use client';
 
 import styled from 'styled-components';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Section = styled.section`
-  min-height: calc(100vh - 4rem); /* Navbar altura aprox */
+  min-height: calc(100vh - 4rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  gap: 2rem;
-  background-color: ${({ theme }) => theme.background};
+  padding: 4rem 2rem;
+  background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
+  transition: background 0.3s ease, color 0.3s ease;
+`;
+
+const Content = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12rem;
+  max-width: 1000px;
+  width: 100%;
 
   @media (max-width: 768px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
+    gap: 2rem;
   }
 `;
 
 const TextContainer = styled.div`
-  flex: 1;
-`;
-
-const ImageContainer = styled.div`
-  flex: 1;
+  max-width: 540px;
   display: flex;
-  justify-content: center;
-
-  img {
-    border-radius: 1rem;
-    object-fit: cover;
-    max-width: 300px;
-    height: auto;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  }
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
+  margin-left: -2rem;
+`;
 
-  a {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    transition: 0.3s ease;
+const Name = styled.h1`
+  font-size: 4rem;
+  font-weight: 700;
 
-    &:first-child {
-      background-color: #16a34a;
-      color: white;
-
-      &:hover {
-        background-color: #15803d;
-      }
-    }
-
-    &:last-child {
-      border: 2px solid #16a34a;
-      color: #16a34a;
-
-      &:hover {
-        background-color: #16a34a;
-        color: white;
-      }
-    }
+  span {
+    color: #22c55e;
   }
 
   @media (max-width: 768px) {
-    justify-content: center;
+    font-size: 2.25rem;
+  }
+`;
+
+const Description = styled.p`
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.text};
+  margin-top: 1rem;
+`;
+
+const Subtitle = styled.p`
+  font-size: 2rem;
+  color: ${({ theme }) => theme.subtext};
+  margin-top: 1rem;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+`;
+
+const Button = styled(Link)`
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+
+  &.primary {
+    background-color: #22c55e;
+    color: white;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+      background-color: #16a34a;
+    }
+  }
+
+  &.secondary {
+    border: 2px solid #f97316;
+    color: #f97316;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+      background-color: #f97316;
+      color: white;
+    }
+  }
+`;
+
+const ImageContainer = styled.div`
+  flex-shrink: 0;
+  border-radius: 20%;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    order: -1;
+  }
+
+  img {
+    border-radius: 20%;
+    object-fit: cover;
   }
 `;
 
 export default function Hero() {
   return (
     <Section id="hero">
-      <TextContainer>
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          ¡Hola! Soy Pedro Leone
-        </motion.h1>
+      <Content>
+        <TextContainer>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Name>
+              <span>Pedro Leone</span>
+            </Name>
+            <Description>
+              Desarrollador Web. Especializado en BackEnd y arquitectura de datos.
+            </Description>
+            <Subtitle>
+              Formado en Ciencias como Licenciado en Ciencias Biológicas.
+            </Subtitle>
+            <Buttons>
+              <Button href="#projects" className="primary">
+                Ver proyectos
+              </Button>
+              <Button
+                href="https://github.com/PLPedroLeone"
+                className="secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </Button>
+            </Buttons>
+          </motion.div>
+        </TextContainer>
 
-        <motion.p
-          className="text-lg md:text-xl mt-4 max-w-xl leading-relaxed"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          Backend developer con mentalidad lógica y estructura clara.  
-          Desarrollo sistemas bien pensados, con datos ordenados y funcionalidades limpias.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <ButtonGroup>
-            <Link href="/cv.pdf" download>Descargar CV</Link>
-            <a href="#contact">Contáctame</a>
-          </ButtonGroup>
-        </motion.div>
-      </TextContainer>
-
-      <ImageContainer>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <Image
-            src="/pedro.jpg"
-            alt="Pedro Leone"
-            width={300}
-            height={300}
-            priority
-          />
+          <ImageContainer>
+            <Image
+              src="/pedro.jpg"
+              alt="Pedro Leone"
+              width={260}
+              height={260}
+              priority
+            />
+          </ImageContainer>
         </motion.div>
-      </ImageContainer>
+      </Content>
     </Section>
   );
 }
