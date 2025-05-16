@@ -8,6 +8,7 @@ declare module 'styled-components' {
     accent: string;
     highlight: string;
     primary: string;
+    techIconBG: string;
   }
 }
 

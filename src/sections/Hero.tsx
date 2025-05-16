@@ -8,13 +8,13 @@ import { FaGithub } from 'react-icons/fa';
 import { FaChevronDown } from 'react-icons/fa';
 
 const Section = styled.section`
-  min-height: calc(100vh - 8rem);
+  min-height: calc(100vh - 4.4rem);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
   position: relative;
-  background: ${({ theme }) => theme.background};
+  background: linear-gradient(135deg, ${({ theme }) => theme.background} 0%, ${({ theme }) => theme.highlight} 100%);
   color: ${({ theme }) => theme.text};
   transition: background 0.3s ease, color 0.3s ease;
 `;
@@ -130,7 +130,7 @@ const ImageContainer = styled.div`
 
 const ScrollDown = styled.a`
   position: absolute;
-  bottom: 2rem;
+  bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
   animation: bounce 2s infinite;

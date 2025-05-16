@@ -2,25 +2,30 @@
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaChevronDown, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Section = styled.section`
-  padding: 5rem 2rem;
-  background-color: ${({ theme }) => theme.background};
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+  position: relative;
+  background: linear-gradient(135deg, ${({ theme }) => theme.highlight} 0%, ${({ theme }) => theme.background} 100%);
   color: ${({ theme }) => theme.text};
-  scroll-margin-top: 2rem;
+  scroll-snap-align: start;
 `;
 
 const Container = styled.div`
   max-width: 1000px;
-  margin: 0 auto;
+  margin: -3rem auto -5rem auto;
 `;
 
 const Title = styled.h2`
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
 const Content = styled.div`
@@ -34,7 +39,7 @@ const Content = styled.div`
 `;
 
 const InfoCard = styled.div`
-  background-color: ${({ theme }) => theme.accent}20;
+  background-color: ${({ theme }) => theme.accent}30;
   padding: 2rem;
   border-radius: 16px;
   color: ${({ theme }) => theme.text};
@@ -44,7 +49,7 @@ const InfoCard = styled.div`
   align-items: left;
   gap: 1.2rem;
   text-align: left;
-  min-height: 350px; // ajustable para forzar altura vertical
+  min-height: 350px;
 `;
 
 const IconRow = styled.div`
@@ -54,7 +59,7 @@ const IconRow = styled.div`
 `;
 
 const IconWrapper = styled.a`
-  background-color: ${({ theme }) => theme.highlight || '#c2f8c2'};
+  background-color: ${({ theme }) => theme.accent}80;
   padding: 0.5rem;
   border-radius: 8px;
   display: inline-flex;
@@ -64,7 +69,7 @@ const IconWrapper = styled.a`
 
   &:hover {
     transform: scale(1.1);
-    background-color: ${({ theme }) => theme.primary || '#9be49b'};
+    background-color: ${({ theme }) => theme.primary};
   }
 
   svg {
@@ -82,6 +87,26 @@ const Paragraphs = styled.div`
     line-height: 1.7;
     max-width: 70ch;
     color: ${({ theme }) => theme.subtext}
+  }
+`;
+
+const ScrollDown = styled.a`
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  color: ${({ theme }) => theme.subtext};
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -142,6 +167,9 @@ export default function About() {
           </Content>
         </motion.div>
       </Container>
+      <ScrollDown href="#technologies">
+        <FaChevronDown />
+      </ScrollDown>
     </Section>
   );
 }
