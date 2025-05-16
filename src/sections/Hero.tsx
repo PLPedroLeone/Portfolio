@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaGithub } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa';
 
 const Section = styled.section`
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 8rem);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
+  position: relative;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
   transition: background 0.3s ease, color 0.3s ease;
@@ -73,6 +76,8 @@ const Buttons = styled.div`
 `;
 
 const Button = styled(Link)`
+  display: flex;
+  align-items: center;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: 500;
@@ -108,14 +113,38 @@ const ImageContainer = styled.div`
   border-radius: 20%;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  max-width: 320px;
 
   @media (max-width: 768px) {
     order: -1;
+    max-width: 260px;
   }
 
   img {
     border-radius: 20%;
     object-fit: cover;
+    width: 100%;
+    height: auto;
+  }
+`;
+
+const ScrollDown = styled.a`
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  color: ${({ theme }) => theme.subtext};
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -133,7 +162,7 @@ export default function Hero() {
               <span>Pedro Leone</span>
             </Name>
             <Description>
-              Desarrollador Web. Especializado en BackEnd y arquitectura de datos.
+              Desarrollador FullStack. Especializado en BackEnd y arquitectura de datos.
             </Description>
             <Subtitle>
               Formado en Ciencias como Licenciado en Ciencias Biológicas.
@@ -148,6 +177,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaGithub size={20} style={{marginRight: '0.5rem'}} />
                 GitHub
               </Button>
             </Buttons>
@@ -163,13 +193,16 @@ export default function Hero() {
             <Image
               src="/pedro.jpg"
               alt="Pedro Leone"
-              width={260}
-              height={260}
+              width={320}
+              height={320}
               priority
             />
           </ImageContainer>
         </motion.div>
       </Content>
+      <ScrollDown href="#about">
+          <FaChevronDown />
+      </ScrollDown>
     </Section>
   );
 }

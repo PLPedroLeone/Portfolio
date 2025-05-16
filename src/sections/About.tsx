@@ -2,77 +2,146 @@
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Section = styled.section`
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
+  scroll-margin-top: 2rem;
 `;
 
-const Heading = styled.h2`
+const Container = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+const Title = styled.h2`
+  text-align: center;
   font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
 `;
 
-const Paragraph = styled.p`
-  max-width: 60ch;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-`;
-
-const TechList = styled.ul`
+const Content = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-  list-style: none;
-  padding: 0;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
 
-  li {
-    background: ${({ theme }) => theme.text}10;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    font-weight: 500;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const InfoCard = styled.div`
+  background-color: ${({ theme }) => theme.accent}20;
+  padding: 2rem;
+  border-radius: 16px;
+  color: ${({ theme }) => theme.text};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  gap: 1.2rem;
+  text-align: left;
+  min-height: 350px; // ajustable para forzar altura vertical
+`;
+
+const IconRow = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
+
+const IconWrapper = styled.a`
+  background-color: ${({ theme }) => theme.highlight || '#c2f8c2'};
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: ${({ theme }) => theme.primary || '#9be49b'};
+  }
+
+  svg {
+    font-size: 1.5rem;
+    color: ${({ theme }) => theme.text};
+  }
+`;
+
+const Paragraphs = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  p {
+    line-height: 1.7;
+    max-width: 70ch;
+    color: ${({ theme }) => theme.subtext}
   }
 `;
 
 export default function About() {
   return (
     <Section id="about">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <Heading>Sobre mí</Heading>
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Title>Sobre mí</Title>
+          <Content>
+            <InfoCard>
+              <span><strong>Pedro Leone</strong></span>
+              <span>💼 Desarrollador Fullstack | Biólogo</span>
+              <span>📍 Buenos Aires, Argentina</span>
+              <span>✉️ pedro.leone@example.com</span>
 
-        <Paragraph>
-          Soy Biólogo de formación con un enfoque analítico y estructurado.
-          En los últimos años hice una transición al desarrollo web, especializándome en
-          Backend, arquitectura de datos y soluciones fullstack que combinan lógica, claridad
-          y eficiencia.
-        </Paragraph>
+                <IconRow>
+                  <IconWrapper
+                    href="https://www.linkedin.com/in/pedro-leone"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin />
+                  </IconWrapper>
+                  <IconWrapper
+                    href="https://github.com/PLPedroLeone"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                  >
+                    <FaGithub />
+                  </IconWrapper>
+                </IconRow>
+            </InfoCard>
 
-        <Paragraph>
-          Me apasiona construir software limpio y mantenible, y disfruto diseñar
-          flujos de datos que escalen con facilidad. Tengo experiencia liderando módulos
-          de inventario, métricas y manejo de usuarios en aplicaciones empresariales.
-        </Paragraph>
+            <Paragraphs>
+              <p>
+                Soy Licenciado en Ciencias Biológicas con una fuerte vocación por la resolución de problemas complejos. 
+                Durante los últimos años hice una transición al mundo del desarrollo web, donde encontré un espacio ideal para aplicar pensamiento lógico, claridad estructural y creatividad.
+              </p>
 
-        <Heading>Tecnologías</Heading>
-        <TechList>
-          <li>TypeScript</li>
-          <li>Node.js</li>
-          <li>NestJS</li>
-          <li>PostgreSQL</li>
-          <li>Prisma</li>
-          <li>React</li>
-          <li>Next.js</li>
-          <li>Styled Components</li>
-        </TechList>
-      </motion.div>
+              <p>
+                Actualmente me especializo en desarrollo Backend y arquitectura de datos, con foco en la creación de aplicaciones robustas y escalables. 
+                He liderado el desarrollo de módulos clave como gestión de inventario, métricas analíticas y control de usuarios, dentro de entornos empresariales.
+              </p>
+
+              <p>
+                Valoro el código limpio, el diseño centrado en el usuario y la colaboración efectiva. 
+                Me entusiasma seguir aprendiendo y contribuir con soluciones que realmente generen impacto.
+              </p>
+            </Paragraphs>
+          </Content>
+        </motion.div>
+      </Container>
     </Section>
   );
 }
