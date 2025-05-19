@@ -126,7 +126,7 @@ export default function About() {
               <span><strong>Pedro Leone</strong></span>
               <span>💼 Desarrollador Fullstack | Biólogo</span>
               <span>📍 Buenos Aires, Argentina</span>
-              <span>✉️ pedro.leone@example.com</span>
+              <span>✉️ pedroleone95@gmail.com</span>
 
                 <IconRow>
                   <IconWrapper

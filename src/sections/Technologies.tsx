@@ -53,24 +53,27 @@ const StackGroup = styled.div`
 `;
 
 const CategoryCard = styled.div`
-  background-color: ${({ theme }) => theme.accent}30;
-  border-radius: 20px;
-  padding: 2rem;
-  flex: 1 1 300px;
-  max-width: 360px;
+  background: linear-gradient(145deg, ${({ theme }) => theme.accent}10 0%, ${({ theme }) => theme.accent}66 100%);
+  box-shadow: 0 0 0 4px ${({ theme }) => theme.primary}44;
+  border-radius: 24px;
+  padding: 1rem 2rem;
+  flex: 1 1 280px;
+  max-width: 320px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.15);
   }
 
   h4 {
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: ${({ theme }) => theme.text};
+    margin: 1.5rem 0 1rem;
+    font-weight: 600;
   }
 
   .icons {
@@ -80,21 +83,39 @@ const CategoryCard = styled.div`
     gap: 1rem;
   }
 
-  img {
-    width: 42px;
-    height: 42px;
-    transition: transform 0.3s ease, filter 0.3s ease;
+  .icon-wrapper {
+    width: 64px;
+    height: 64px;
+    background: ${({ theme }) => theme.highlight}90;
+    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.accent}40;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.2s ease;
 
     &:hover {
-      transform: scale(1.2);
-      filter: brightness(1.2);
-      }
+      transform: translateY(-4px) scale(1.05);
+      background: ${({ theme }) => theme.highlight};
+      box-shadow: 0 4px 10px ${({ theme }) => theme.accent}40;
+    }
+
+    img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: rotate(5deg) scale(1.1);
+    }
   }
+    
 `;
 
 const ScrollDown = styled.a`
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   animation: bounce 2s infinite;
@@ -131,8 +152,12 @@ export default function TechStack() {
             <CategoryCard>
               <h4>Lenguajes</h4>
               <div className="icons">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript" />
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript" />
+                </div>
               </div>
             </CategoryCard>
           </StackGroup>
@@ -142,33 +167,63 @@ export default function TechStack() {
             <CategoryCard>
               <h4>Backend</h4>
               <div className="icons">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js" title="Node.js" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" title="Express" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS" title="NestJS" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="Docker" title="Docker" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" title="Git" />
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js" title="Node.js" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" title="Express" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS" title="NestJS" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="Docker" title="Docker" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" title="Git" />
+                </div>
               </div>
             </CategoryCard>
 
             <CategoryCard>
               <h4>Frontend</h4>
               <div className="icons">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" title="React" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js" title="Next.js" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind" title="Tailwind CSS" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML" title="HTML5" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS" title="CSS3" />
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" title="React" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js" title="Next.js" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind" title="Tailwind CSS" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML" title="HTML5" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS" title="CSS3" />
+                </div>
               </div>
             </CategoryCard>
 
             <CategoryCard>
               <h4>DB & Tools</h4>
               <div className="icons">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" alt="MongoDB" title="MongoDB" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" title="MySQL" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/insomnia/insomnia-original.svg" alt="Insomnia" title="Insomnia" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman" title="Postman" />
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" alt="MongoDB" title="MongoDB" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" title="MySQL" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/insomnia/insomnia-original.svg" alt="Insomnia" title="Insomnia" />
+                </div>
+                <div className="icon-wrapper">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman" title="Postman" />
+                </div>
               </div>
             </CategoryCard>
           </StackGroup>
