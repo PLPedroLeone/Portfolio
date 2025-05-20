@@ -9,13 +9,26 @@ declare module 'styled-components' {
     highlight: string;
     primary: string;
     techIconBG: string;
+    primaryDark: string;
   }
 }
 
 export const GlobalStyle = createGlobalStyle`
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+    font-family: system-ui, sans-serif;
+  }
+
   body {
-    background-color: ${({ theme }) => theme.background};
+    background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
-    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 0;
   }
 `;

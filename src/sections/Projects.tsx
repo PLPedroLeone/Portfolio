@@ -2,7 +2,7 @@
 
 import { Eye } from "lucide-react";
 import React, { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styled from "styled-components";
 
 interface FilterButtonProps {
@@ -218,23 +218,33 @@ const ScrollDown = styled.a`
 const projectsData = [
   {
     id: "1",
-    name: "Ecommerce API",
-    category: "BackEnd",
-    description: "Desarrollé el BackEnd de una aplicación web comercio electrónico implementando arquitectura RESTful con Nest.js y Typescript. La plataforma incluye un registro y autenticación, gestión de productos y categorías a través de un seeder, un carrito de compras y procesamiento de pedidos.",
-    tech: ["Node.js", "NestJS", "PostgreSQL", "TypeORM", "Cloudinary", "JWT Auth"],
-    github: "https://github.com/usuario/ecommerce-api",
+    name: "App de Turnos",
+    category: "Fullstack",
+    description: "Diseño FullStack de aplicación web para reservar turnos. Implementé arquitectura RESTful con Express y TypeScript. FrontEnd realizado con React.",
+    tech: ["TypeScript", "React", "Node.js", "Express", "PostgreSQL"],
+    github: "https://github.com/PLPedroLeone/LabAppointments",
     demo: "",
-    image: "/images/ecommerce-api.jpg"
+    images: ["/images/Turnos1.jpg", "/images/Turnos2.jpg", "/images/Turnos3.jpg"]
   },
   {
     id: "2",
-    name: "App de Turnos",
+    name: "Ecommerce API",
+    category: "BackEnd",
+    description: "Desarrollé el BackEnd de una aplicación web comercio electrónico implementando arquitectura RESTful con Nest.js y Typescript. La plataforma incluye un registro y autenticación, gestión de productos y categorías a través de un seeder, un carrito de compras y procesamiento de pedidos.",
+    tech: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "TypeORM", "Cloudinary", "JWT Auth"],
+    github: "https://github.com/PLPedroLeone/Ecommerce-PM4Henry",
+    demo: "",
+    images: ["/images/ecommerce-api.jpg", "/images/ecommerce-api-2.jpg"]
+  },
+  {
+    id: "3",
+    name: "GeStocker",
     category: "Fullstack",
-    description: "Aplicación para reservar y gestionar turnos online.",
-    tech: ["React", "Node.js", "PostgreSQL"],
-    github: "https://github.com/usuario/turnos-app",
-    demo: "https://turnos-app.vercel.app",
-    image: "/images/turnos-app.png"
+    description: "GeStocker es una aplicación web de gestión de inventario para pequeños y medianos negocios. GeStocker le permite al usuario crear negocios y locales, gestionar entradas y salidas de productos, entre otras cosas. El proyecto fue desarrollado en equipo con metodologías ágiles, priorizando la experiencia del usuario y la escalabilidad del producto. Rol: BackEnd Developer (6 integrantes: 4 backend, 2 frontend) | Abril 2025. Trabajé en el diseño de la arquitectura de la base de datos con TypeORM y PostgreSQL.",
+    tech: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "TypeORM", "Cloudinary", "JWT Auth", "Auth0", "NextJS", "React"],
+    github: "https://github.com/PLPedroLeone/Ecommerce-PM4Henry",
+    demo: "https://ge-stocker.vercel.app/",
+    images: ["/images/gestocker1.jpg", "/images/gestocker2.jpg", "/images/gestocker3.jpg", "/images/gestocker4.jpg", "/images/gestocker5.jpg", "/images/gestocker6.jpg", "/images/gestocker7.jpg",]
   },
 ];
 
@@ -243,6 +253,7 @@ const filters = ["Todos", "BackEnd", "Fullstack"];
 export const Projects = () => {
   const [selectedFilter, setSelectedFilter] = useState("Todos");
   const [selectedProject, setSelectedProject] = useState(projectsData[0]);
+  const [imageIndex, setImageIndex] = useState(0);
 
   const filteredProjects =
     selectedFilter === "Todos"
@@ -272,7 +283,10 @@ export const Projects = () => {
                 <ProjectCard
                     key={project.id}
                     $active={selectedProject?.id === project.id}
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => {
+                      setSelectedProject(project);
+                      setImageIndex(0);
+                    }}
                 >
                     {project.name}
                 </ProjectCard>
@@ -281,7 +295,62 @@ export const Projects = () => {
 
             {selectedProject && (
                 <ProjectDetail>
-                    <ProjectImage src={selectedProject.image} alt={selectedProject.name} />
+                    <div style={{ position: 'relative', width: '450px' }}>
+                      <ProjectImage
+                        src={selectedProject.images?.[imageIndex] ?? ""}
+                        alt={`${selectedProject.name} screenshot ${imageIndex + 1}`}
+                      />
+                      {(selectedProject.images?.length ?? 0) > 1 && (
+                        <>
+                          <button
+                            onClick={() =>
+                              setImageIndex((prev) => {
+                                const imagesLength = selectedProject.images?.length ?? 0;
+                                return prev === 0 ? imagesLength - 1 : prev - 1;
+                              })
+                            }
+                            style={{
+                              position: 'absolute',
+                              top: '50%',
+                              left: '-1.5rem',
+                              transform: 'translateY(-50%)',
+                              background: 'rgba(0,0,0,0.5)',
+                              color: '#fff',
+                              border: 'none',
+                              borderRadius: '50%',
+                              width: '2rem',
+                              height: '2rem',
+                              cursor: 'pointer',
+                            }}
+                            aria-label="Anterior"
+                          >
+                            <FaChevronLeft />
+                          </button>
+
+                          <button
+                            onClick={() =>
+                              setImageIndex((prev) => (prev === (selectedProject.images?.length ?? 0) - 1 ? 0 : prev + 1))
+                            }
+                            style={{
+                              position: 'absolute',
+                              top: '50%',
+                              right: '-1.5rem',
+                              transform: 'translateY(-50%)',
+                              background: 'rgba(0,0,0,0.5)',
+                              color: '#fff',
+                              border: 'none',
+                              borderRadius: '50%',
+                              width: '2rem',
+                              height: '2rem',
+                              cursor: 'pointer',
+                            }}
+                            aria-label="Siguiente"
+                          >
+                            <FaChevronRight />
+                          </button>
+                        </>
+                      )}
+                    </div>
                     <ProjectContent>
                         <ProjectTitle>{selectedProject.name}</ProjectTitle>
                         <ProjectDescription>{selectedProject.description}</ProjectDescription>

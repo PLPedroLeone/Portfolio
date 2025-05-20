@@ -8,6 +8,7 @@ import { Moon, Sun } from 'lucide-react';
 const NavBarContainer = styled.header`
   position: sticky;
   top: 0;
+  margin-bottom: -4.5rem;
   z-index: 1000;
   width: 100%;
   background-color: ${({ theme }) => theme.background};
@@ -78,9 +79,9 @@ export default function NavBar() {
   return (
     <NavBarContainer>
       <NavContent>
-        <Logo>
+        <NavLink href="#hero"><Logo>
           Pedro <span>Leone</span>
-        </Logo>
+        </Logo></NavLink>
         <Nav>
           <NavLink href="#about">Sobre mí</NavLink>
           <NavLink href="#technologies">Tecnologias</NavLink>

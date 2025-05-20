@@ -8,11 +8,11 @@ import { FaGithub } from 'react-icons/fa';
 import { FaChevronDown } from 'react-icons/fa';
 
 const Section = styled.section`
-  min-height: calc(100vh - 4.4rem);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 0 2rem;
   position: relative;
   background: linear-gradient(135deg, ${({ theme }) => theme.background} 0%, ${({ theme }) => theme.highlight} 100%);
   color: ${({ theme }) => theme.text};

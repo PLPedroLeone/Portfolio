@@ -7,7 +7,8 @@ export const lightTheme: DefaultTheme = {
   accent: '#FF7F11',
   highlight: '#c2f8c2',
   primary: '#9be49b', 
-  techIconBG: '#FF7F11'
+  techIconBG: '#FF7F11',
+  primaryDark: "#0f2e1e",
 };
 
 export const darkTheme: DefaultTheme = {
@@ -17,5 +18,6 @@ export const darkTheme: DefaultTheme = {
   accent: '#4F86C6',
   highlight: '#3b5e3c',
   primary: '#3b7742',
-  techIconBG: '#4F86C6',  
+  techIconBG: '#4F86C6',
+  primaryDark: "#0f2e1e",
 };
