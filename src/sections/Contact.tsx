@@ -88,10 +88,10 @@ const Contact = () => {
     <Section id="contact">
       <h2>Contacto</h2>
       <p>¿Te interesa trabajar conmigo o tenés alguna consulta?</p>
-      <form>
-        <input type="text" placeholder="Nombre" required />
-        <input type="email" placeholder="Correo electrónico" required />
-        <textarea placeholder="Mensaje" rows={5} required />
+      <form action="https://formspree.io/f/mjkwzzra" method="POST">
+        <input type="text" name="name" placeholder="Nombre" required />
+        <input type="email" name="email" placeholder="Correo electrónico" required />
+        <textarea name="message" placeholder="Mensaje" rows={5} required />
         <button type="submit">Enviar Mensaje</button>
       </form>
       

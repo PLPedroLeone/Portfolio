@@ -312,15 +312,19 @@ export const Projects = () => {
                             style={{
                               position: 'absolute',
                               top: '50%',
-                              left: '-1.5rem',
+                              left: '-1.4rem',
                               transform: 'translateY(-50%)',
                               background: 'rgba(0,0,0,0.5)',
                               color: '#fff',
                               border: 'none',
                               borderRadius: '50%',
-                              width: '2rem',
-                              height: '2rem',
+                              width: '1.5rem',
+                              height: '1.5rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
                               cursor: 'pointer',
+                              zIndex: 2
                             }}
                             aria-label="Anterior"
                           >
@@ -334,15 +338,19 @@ export const Projects = () => {
                             style={{
                               position: 'absolute',
                               top: '50%',
-                              right: '-1.5rem',
+                              right: '-1.4rem',
                               transform: 'translateY(-50%)',
                               background: 'rgba(0,0,0,0.5)',
                               color: '#fff',
                               border: 'none',
                               borderRadius: '50%',
-                              width: '2rem',
-                              height: '2rem',
+                              width: '1.5rem',
+                              height: '1.5rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
                               cursor: 'pointer',
+                              zIndex: 2
                             }}
                             aria-label="Siguiente"
                           >
