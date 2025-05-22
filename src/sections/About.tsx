@@ -9,7 +9,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 6rem;
   position: relative;
   background: linear-gradient(135deg, ${({ theme }) => theme.highlight} 0%, ${({ theme }) => theme.background} 100%);
   color: ${({ theme }) => theme.text};
@@ -18,7 +18,8 @@ const Section = styled.section`
 
 const Container = styled.div`
   max-width: 1000px;
-  margin: -3rem auto -5rem auto;
+  margin: -3rem auto 0 auto;
+  padding: 0 1rem;
 `;
 
 const Title = styled.h2`
@@ -35,6 +36,7 @@ const Content = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 3rem;
   }
 `;
 
@@ -46,10 +48,14 @@ const InfoCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
   gap: 1.2rem;
   text-align: left;
   min-height: 350px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    align-items: center;
+  }
 `;
 
 const IconRow = styled.div`
@@ -81,12 +87,14 @@ const IconWrapper = styled.a`
 const Paragraphs = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem; // antes era 1.5rem
 
   p {
     line-height: 1.7;
     max-width: 70ch;
-    color: ${({ theme }) => theme.subtext}
+    color: ${({ theme }) => theme.subtext};
+    margin: 0 auto;
+    text-align: justify;
   }
 `;
 

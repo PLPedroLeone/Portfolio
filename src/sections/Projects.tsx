@@ -19,6 +19,10 @@ const Section = styled.section`
   background: linear-gradient(135deg, ${({ theme }) => theme.background} 0%, ${({ theme }) => theme.highlight} 100%);
   color: ${({ theme }) => theme.text};
   scroll-snap-align: start;
+
+  @media (max-width: 768px) {
+    padding: 4rem 1rem 2rem 1rem;
+  }
 `;
 
 const Container = styled.div`
@@ -41,11 +45,14 @@ const Description = styled.p`
   color: ${({ theme }) => theme.subtext};
 `;
 
+
 const FilterWrapper = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
+  padding: 0 1rem;
   text-align: center;
 `;
 
@@ -69,6 +76,7 @@ const ProjectList = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 2rem;
+  padding: 0 1rem;
 `;
 
 const ProjectCard = styled.button<FilterButtonProps>`
@@ -98,6 +106,7 @@ const ProjectDetail = styled.div`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   align-items: center;
   margin-top: 2rem;
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -106,13 +115,15 @@ const ProjectDetail = styled.div`
 `;
 
 const ProjectImage = styled.img`
-  width: 450px;
+  width: 100%;
+  max-width: 450px;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+  flex-shrink: 0;
 
   @media (max-width: 768px) {
-    width: 100%;
+    max-width: 100%;
   }
 `;
 
@@ -121,6 +132,7 @@ const ProjectContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
 `;
 
 const ProjectTitle = styled.h3`
@@ -183,8 +195,8 @@ const ProjectLinks = styled.div`
     }
 
     &.code {
-      background-color: #24292e; // GitHub dark
-      color: #f6f8fa; // GitHub light text
+      background-color: #24292e;
+      color: #f6f8fa;
       border: 2px solid #1b1f23;
 
       &:hover {
@@ -193,17 +205,27 @@ const ProjectLinks = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
+
+
 const ScrollDown = styled.a`
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
   transform: translateX(-50%);
   animation: bounce 2s infinite;
   color: ${({ theme }) => theme.subtext};
-  font-size: 1.5rem;
-  cursor: pointer;
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+  }
 
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
@@ -218,13 +240,13 @@ const ScrollDown = styled.a`
 const projectsData = [
   {
     id: "1",
-    name: "App de Turnos",
+    name: "GeStocker",
     category: "Fullstack",
-    description: "Diseño FullStack de aplicación web para reservar turnos. Implementé arquitectura RESTful con Express y TypeScript. FrontEnd realizado con React.",
-    tech: ["TypeScript", "React", "Node.js", "Express", "PostgreSQL"],
-    github: "https://github.com/PLPedroLeone/LabAppointments",
-    demo: "",
-    images: ["/images/Turnos1.jpg", "/images/Turnos2.jpg", "/images/Turnos3.jpg"]
+    description: "GeStocker es una aplicación web de gestión de inventario para pequeños y medianos negocios. GeStocker le permite al usuario crear negocios y locales, gestionar entradas y salidas de productos, entre otras cosas. El proyecto fue desarrollado en equipo con metodologías ágiles, priorizando la experiencia del usuario y la escalabilidad del producto. Rol: BackEnd Developer (6 integrantes: 4 backend, 2 frontend) | Abril 2025. Trabajé en el diseño de la arquitectura de la base de datos con TypeORM y PostgreSQL.",
+    tech: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "TypeORM", "Cloudinary", "JWT Auth", "Auth0", "NextJS", "React"],
+    github: "https://github.com/PLPedroLeone/Ecommerce-PM4Henry",
+    demo: "https://ge-stocker.vercel.app/",
+    images: ["/images/gestocker1.jpg", "/images/gestocker2.jpg", "/images/gestocker3.jpg", "/images/gestocker4.jpg", "/images/gestocker5.jpg", "/images/gestocker6.jpg", "/images/gestocker7.jpg",]
   },
   {
     id: "2",
@@ -238,13 +260,13 @@ const projectsData = [
   },
   {
     id: "3",
-    name: "GeStocker",
+    name: "App de Turnos",
     category: "Fullstack",
-    description: "GeStocker es una aplicación web de gestión de inventario para pequeños y medianos negocios. GeStocker le permite al usuario crear negocios y locales, gestionar entradas y salidas de productos, entre otras cosas. El proyecto fue desarrollado en equipo con metodologías ágiles, priorizando la experiencia del usuario y la escalabilidad del producto. Rol: BackEnd Developer (6 integrantes: 4 backend, 2 frontend) | Abril 2025. Trabajé en el diseño de la arquitectura de la base de datos con TypeORM y PostgreSQL.",
-    tech: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "TypeORM", "Cloudinary", "JWT Auth", "Auth0", "NextJS", "React"],
-    github: "https://github.com/PLPedroLeone/Ecommerce-PM4Henry",
-    demo: "https://ge-stocker.vercel.app/",
-    images: ["/images/gestocker1.jpg", "/images/gestocker2.jpg", "/images/gestocker3.jpg", "/images/gestocker4.jpg", "/images/gestocker5.jpg", "/images/gestocker6.jpg", "/images/gestocker7.jpg",]
+    description: "Diseño FullStack de aplicación web para reservar turnos. Implementé arquitectura RESTful con Express y TypeScript. FrontEnd realizado con React.",
+    tech: ["TypeScript", "React", "Node.js", "Express", "PostgreSQL"],
+    github: "https://github.com/PLPedroLeone/LabAppointments",
+    demo: "",
+    images: ["/images/Turnos1.jpg", "/images/Turnos2.jpg", "/images/Turnos3.jpg"]
   },
 ];
 
@@ -283,7 +305,7 @@ export const Projects = () => {
                 <ProjectCard
                     key={project.id}
                     $active={selectedProject?.id === project.id}
-                    onClick={() => {
+                     onClick={() => {
                       setSelectedProject(project);
                       setImageIndex(0);
                     }}
@@ -295,99 +317,81 @@ export const Projects = () => {
 
             {selectedProject && (
                 <ProjectDetail>
-                    <div style={{ position: 'relative', width: '450px' }}>
-                      <ProjectImage
-                        src={selectedProject.images?.[imageIndex] ?? ""}
-                        alt={`${selectedProject.name} screenshot ${imageIndex + 1}`}
-                      />
-                      {(selectedProject.images?.length ?? 0) > 1 && (
-                        <>
-                          <button
-                            onClick={() =>
-                              setImageIndex((prev) => {
-                                const imagesLength = selectedProject.images?.length ?? 0;
-                                return prev === 0 ? imagesLength - 1 : prev - 1;
-                              })
-                            }
-                            style={{
-                              position: 'absolute',
-                              top: '50%',
-                              left: '-1.4rem',
-                              transform: 'translateY(-50%)',
-                              background: 'rgba(0,0,0,0.5)',
-                              color: '#fff',
-                              border: 'none',
-                              borderRadius: '50%',
-                              width: '1.5rem',
-                              height: '1.5rem',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              cursor: 'pointer',
-                              zIndex: 2
-                            }}
-                            aria-label="Anterior"
-                          >
-                            <FaChevronLeft />
-                          </button>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <ProjectImage
+    src={selectedProject.images[imageIndex]}
+    alt={selectedProject.name}
+  />
 
-                          <button
-                            onClick={() =>
-                              setImageIndex((prev) => (prev === (selectedProject.images?.length ?? 0) - 1 ? 0 : prev + 1))
-                            }
-                            style={{
-                              position: 'absolute',
-                              top: '50%',
-                              right: '-1.4rem',
-                              transform: 'translateY(-50%)',
-                              background: 'rgba(0,0,0,0.5)',
-                              color: '#fff',
-                              border: 'none',
-                              borderRadius: '50%',
-                              width: '1.5rem',
-                              height: '1.5rem',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              cursor: 'pointer',
-                              zIndex: 2
-                            }}
-                            aria-label="Siguiente"
-                          >
-                            <FaChevronRight />
-                          </button>
-                        </>
-                      )}
-                    </div>
+  {selectedProject.images.length > 1 && (
+    <div
+      style={{
+        display: 'flex',
+        gap: '0.5rem',
+        marginTop: '0.5rem',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: '-1rem',
+      }}
+    >
+      <FaChevronLeft
+        style={{ cursor: 'pointer' }}
+        onClick={() =>
+          setImageIndex((prev) =>
+            prev === 0
+              ? selectedProject.images.length - 1
+              : prev - 1
+          )
+        }
+      />
+      <span>
+        {imageIndex + 1}/{selectedProject.images.length}
+      </span>
+      <FaChevronRight
+        style={{ cursor: 'pointer' }}
+        onClick={() =>
+          setImageIndex((prev) =>
+            prev === selectedProject.images.length - 1
+              ? 0
+              : prev + 1
+          )
+        }
+      />
+    </div>
+  )}
+</div>
+
                     <ProjectContent>
                         <ProjectTitle>{selectedProject.name}</ProjectTitle>
                         <ProjectDescription>{selectedProject.description}</ProjectDescription>
+
                         <ProjectTechList>
-                            {selectedProject.tech.map((t) => (
-                                <TechItem key={t}>{t}</TechItem>
+                            {selectedProject.tech.map((tech) => (
+                                <TechItem key={tech}>{tech}</TechItem>
                             ))}
                         </ProjectTechList>
+
                         <ProjectLinks>
-                            {selectedProject.github && (
-                                <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="code">
-                                    &lt;/&gt; Ver Código
-                                </a>
-                            )}
                             {selectedProject.demo && (
                                 <a href={selectedProject.demo} target="_blank" rel="noopener noreferrer" className="demo">
-                                    <Eye strokeWidth={2} size={16} />
-                                    Demo en Vivo
+                                    <Eye /> Demo
+                                </a>
+                            )}
+                            {selectedProject.github && (
+                                <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="code">
+                                    &lt;/&gt; Código
                                 </a>
                             )}
                         </ProjectLinks>
+
                     </ProjectContent>
                 </ProjectDetail>
             )}
-        </Container>
 
-        <ScrollDown href="#contact">
-            <FaChevronDown />
-        </ScrollDown>
+            <ScrollDown href="#contact">
+                <FaChevronDown />
+            </ScrollDown>
+        </Container>
     </Section>
   );
 };

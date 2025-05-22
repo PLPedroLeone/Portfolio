@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useTheme } from '@/context/ThemeContext';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 const NavBarContainer = styled.header`
   position: sticky;
   top: 0;
-  margin-bottom: -4.5rem;
-  z-index: 1000;
+  z-index: 11000;
   width: 100%;
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
@@ -24,6 +24,10 @@ const NavContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
 `;
 
 const Logo = styled.span`
@@ -32,15 +36,53 @@ const Logo = styled.span`
   font-weight: 700;
 
   span {
-    color: #22c55e; /* verde para acento */
+    color: #22c55e;
   }
 `;
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ open: boolean }>`
   display: flex;
   gap: 1.5rem;
   align-items: center;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 4.5rem;
+    left: 0;
+    right: 0;
+    background-color: ${({ theme }) => theme.background};
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 1rem;
+    display: ${({ open }) => (open ? 'flex' : 'none')};
+    border-bottom: 1px solid ${({ theme }) => theme.text}20;
+    z-index: 10000;
+  }
 `;
+
+const RightSection = styled.div<{ open: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+    ${({ open }) => open && `flex-direction: column; align-items: flex-end;`}
+  }
+`;
+
+const HamburgerButton = styled.button`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: ${({ theme }) => theme.text};
+  }
+`;
+
 
 const NavLink = styled(Link)`
   text-decoration: none;
@@ -75,25 +117,36 @@ const ThemeToggle = styled.button`
 
 export default function NavBar() {
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false); 
 
   return (
     <NavBarContainer>
       <NavContent>
-        <NavLink href="#hero"><Logo>
-          Pedro <span>Leone</span>
-        </Logo></NavLink>
-        <Nav>
-          <NavLink href="#about">Sobre mí</NavLink>
-          <NavLink href="#technologies">Tecnologias</NavLink>
-          <NavLink href="#projects">Proyectos</NavLink>
-          <NavLink href="#contact">Contacto</NavLink>
-          <DownloadCV href="/cv-pedro-leone.pdf" download="cv-pedro-leone.pdf">
-            Descargar CV
-          </DownloadCV>
-          <ThemeToggle onClick={toggleTheme}>
+        <NavLink href="#hero">
+          <Logo>
+            Pedro <span>Leone</span>
+          </Logo>
+        </NavLink>
+
+        <RightSection open={menuOpen}>
+          <Nav open={menuOpen}>
+            <NavLink href="#about">Sobre mí</NavLink>
+            <NavLink href="#technologies">Tecnologías</NavLink>
+            <NavLink href="#projects">Proyectos</NavLink>
+            <NavLink href="#contact">Contacto</NavLink>
+            <DownloadCV href="/cv-pedro-leone.pdf" download="cv-pedro-leone.pdf">
+              Descargar CV
+            </DownloadCV>
+          </Nav>
+
+          <ThemeToggle onClick={toggleTheme} aria-label="Cambiar tema">
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </ThemeToggle>
-        </Nav>
+
+          <HamburgerButton onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </HamburgerButton>
+        </RightSection>
       </NavContent>
     </NavBarContainer>
   );

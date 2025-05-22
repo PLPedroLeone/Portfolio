@@ -23,6 +23,8 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
     font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
   }
 
   body {

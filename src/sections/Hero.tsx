@@ -13,6 +13,7 @@ const Section = styled.section`
   align-items: center;
   justify-content: center;
   padding: 0 2rem;
+  margin-top: -4.5rem;
   position: relative;
   background: linear-gradient(135deg, ${({ theme }) => theme.background} 0%, ${({ theme }) => theme.highlight} 100%);
   color: ${({ theme }) => theme.text};
@@ -38,7 +39,12 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
   margin-left: -2rem;
+
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
 `;
 
 const Name = styled.h1`
@@ -60,12 +66,20 @@ const Description = styled.p`
   line-height: 1.6;
   color: ${({ theme }) => theme.text};
   margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Subtitle = styled.p`
   font-size: 2rem;
   color: ${({ theme }) => theme.subtext};
   margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Buttons = styled.div`
@@ -73,6 +87,11 @@ const Buttons = styled.div`
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 2rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Button = styled(Link)`
@@ -200,8 +219,8 @@ export default function Hero() {
           </ImageContainer>
         </motion.div>
       </Content>
-      <ScrollDown href="#about">
-          <FaChevronDown />
+      <ScrollDown href="#about" aria-label="Ir a Sobre mí">
+        <FaChevronDown />
       </ScrollDown>
     </Section>
   );
